@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blackjack</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+</head>
+<body>
+  <div class="jumbotron">
+    <div class="container-fluid">
+      <h1 id="head">Blackjack</h1>
+      <p id="handScoreOutput"></p>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl">
+        <div id="output">
+          Dealer hand:
+          <span id="dealerHandOutput"></span>
+          <div id="dealerArea"></div>
+          Player hand:
+          <span id="playerHandOutput"></span>
+          <div id="playerArea"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl">
+        <div id='playerActions'>
+          <button id='init' type="button" class="btn btn-success">Deal</button>
+          <button id='hit' type="button" class="btn btn-primary">Hit</button>
+          <button id='stand' type="button" class="btn btn-danger">Stand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

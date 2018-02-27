@@ -1,0 +1,133 @@
+ /********************************/
+  /********** general ***********/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#dealerArea,
+#playerArea {
+  height: 180px;
+  width: 500px;
+  /* margin-right: 800px; */
+}
+
+#dealerArea {
+  margin-left: 500px;
+}
+
+#head {
+  font-family: 'Rye', cursive;
+  font-size: 74px;
+  text-align: center;
+  color: #fff;
+}
+
+#handScoreOutput {
+  font-family: 'Rye', cursive;
+  font-size: 25px;
+  color: #fff;
+  text-align: center;
+  margin-top: 17px;
+}
+
+#output, #playerActions {
+  font-family: 'Rye', cursive;
+  text-align: center;
+  font-size: 18px;
+}
+
+.jumbotron {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  url(https://images.unsplash.com/photo-1498962342534-ee08a0bb1d45?ixlib=rb-0.3.5&s=986eb827cd155572efecd3a1a62390e4&auto=format&fit=crop&w=2851&q=80);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 35vh;
+}
+
+/********************************/
+/********** card create ********/
+
+.icard {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  height: 160px;
+  width: 120px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  display: inline-block;
+  padding: 4px;
+  margin-left: 420px;
+}
+
+.top-card {
+  text-align: left;
+  font-size: 20px;
+  line-height: 21px;
+  margin-top: 2px;
+}
+
+.content-card {
+  text-align: center;
+  font-size: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.bottom-card {
+  text-align: left;
+  margin-top: -8px;
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: -90px;
+  transform: rotate(180deg);
+}
+
+#card-cover {
+  height: 160px;
+  width: 120px;
+  border-radius: 10px;
+  position: absolute;
+  border: 1px solid black;
+  background-image: url(img/back.png);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4px;
+  margin-left: 420px;
+}
+
+/********************************/
+/********** suit render ********/
+
+.clubs,
+.spades {
+  color: black;
+}
+
+.hearts,
+.diams {
+  color: red;
+}
+
+.hearts .suit::after {
+
+  content: '\2665';
+}
+
+.diams .suit::after {
+  content: '\2666';
+}
+
+.spades .suit::after {
+  content: '\2660';
+}
+
+.clubs .suit::after {
+  content: '\2663';
+}
