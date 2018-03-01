@@ -1,0 +1,23 @@
+{
+  "name": "blackjack",
+  "version": "1.0.0",
+  "description": "a simple blackjack app in JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viiralt/blackjack_app.git"
+  },
+  "keywords": [
+    "blackjack",
+    "javascript"
+  ],
+  "author": "Henri Viiralt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/viiralt/blackjack_app/issues"
+  },
+  "homepage": "https://github.com/viiralt/blackjack_app#readme"
+}

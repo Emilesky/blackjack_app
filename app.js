@@ -11,7 +11,7 @@ document.getElementById('init').addEventListener('click', init);
 document.getElementById('hit').addEventListener('click', hit);
 document.getElementById('stand').addEventListener('click', stand);
 
-let cards = [];
+let deck = [];
 let playerHand = []; 
 let dealerHand = [];
 let cardCount = 0; 
@@ -25,7 +25,7 @@ for (let suit in suits) {
   const suitColour = suitCheck === 'S' || suitCheck === 'C' ? 'black' : 'red';
 
   for (let number in numbers) {
-    // nums J, Q, K parsed to int and set to value of 10
+    // J, Q, K parsed to ints and assign the "weight" of 10
     const value = number > 9 ? 10 : parseInt(number) + 1;
     
     const card = {
@@ -35,7 +35,7 @@ for (let suit in suits) {
       number: numbers[number],
       symbol: suits[suit]
     };
-    cards.push(card);
+    deck.push(card);
   }
 }
 
@@ -44,15 +44,26 @@ gameOver();
 /********************************/
 /****** game logic *************/
 
-function shuffleDeck(array) {
-  // check this logic
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+function shuffleDeck() {
+  // for 1000 turns, switch the values two cards in random positions in the deck
+  console.log(deck);
+  for (let i = 0; i < 1000; i++) {
+    let location1 = Math.floor(Math.random() * deck.length);
+    let location2 = Math.floor(Math.random() * deck.length);
+    let tmp = deck[location1];
+
+    deck[location1] = deck[location2];
+    deck[location2] = tmp;
   }
-  return array;
+}
+
+function reShuffleDeck() {
+  cardCount++;
+  if (cardCount > 40) {
+    shuffleDeck(deck);
+    cardCount = 0;
+    handScoreOutput.textContent = 'deck has been re-shuffled';
+  }
 }
 
 function dealHands() {
@@ -63,17 +74,17 @@ function dealHands() {
   dealerHandOutput.textContent = '?';
 
   for (let card = 0; card < 2; card++) {
-    dealerHand.push(cards[cardCount]);
+    dealerHand.push(deck[cardCount]);
     dealerArea.innerHTML += renderHand(cardCount, card);
     
     if (card === 0) {
       dealerArea.innerHTML +=
         '<div id="card-cover" style="left:100px;"></div>';
     }
-    cardCount++;
-    playerHand.push(cards[cardCount]);
+    reShuffleDeck();
+    playerHand.push(deck[cardCount]);
     playerArea.innerHTML += renderHand(cardCount, card);
-    cardCount++;
+    reShuffleDeck();
   }
 
   let playerHandValue = checkTotalHandValue(playerHand);
@@ -89,9 +100,9 @@ function dealHands() {
 }
 
 function hit() {
-  playerHand.push(cards[cardCount]);
+  playerHand.push(deck[cardCount]);
   playerArea.innerHTML += renderHand(cardCount, playerHand.length - 1);
-  cardCount++;
+  reShuffleDeck();
 
   let playerHandValue = checkTotalHandValue(playerHand);
   let dealerHandValue = checkTotalHandValue(dealerHand);
@@ -120,9 +131,9 @@ function stand() {
   dealerHandOutput.textContent = dealerHandValue;
 
   while (dealerHandValue < 19) {
-    dealerHand.push(cards[cardCount]);
+    dealerHand.push(deck[cardCount]);
     dealerArea.innerHTML += renderHand(cardCount, dealerHand.length - 1);
-    cardCount++;
+    reShuffleDeck();
     dealerHandValue = checkTotalHandValue(dealerHand);
     dealerHandOutput.textContent = dealerHandValue;
   }
@@ -131,7 +142,7 @@ function stand() {
     handScoreOutput.textContent = 'Player Blackjack!!!';
   } else if (dealerHandValue === 21) {
     handScoreOutput.textContent =
-      'Dealer Blackjack! House ALWAYS wins in the end, YEEEEEEHAAAAWWWW!!!';
+      'Dealer Blackjack! House always wins in the end, YEEEEEEHAAAAWWWW!!!';
   } else if (
     (playerHandValue < 22 && playerHandValue > dealerHandValue) ||
     (dealerHandValue > 21 && playerHandValue < 22)
@@ -150,7 +161,7 @@ function stand() {
 
 function init() {
   gameActive();
-  shuffleDeck(cards);
+  shuffleDeck(deck);
   dealHands();
 }
 
@@ -179,13 +190,13 @@ function renderHand(n, card) {
   let cardPosition = card > 0 ? card * 60 + 100 : 100;
   return (
     '<div class="icard ' +
-    cards[n].symbol +
+    deck[n].symbol +
     '" style="left:' +
     cardPosition +
     'px;"><div class="top-card suit">' +
-    cards[n].number +
+    deck[n].number +
     '<br></div><div class="content-card suit"></div><div class="bottom-card suit">' +
-    cards[n].number +
+    deck[n].number +
     '<br></div></div>'
   );
 }
